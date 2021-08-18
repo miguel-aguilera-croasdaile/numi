@@ -1,7 +1,8 @@
 <h1> <%= @raffle.name %> </h1>
 <h1> <%= @raffle.description %> </h1>
-<%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+<%#  cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
 
 <% @raffle.numbers.times do |number| %>
+<%= link_to "Comprar Numero", new_order_path(raffle_id: @raffle.id, raffle_number: number+1) %>
 <p><%= number + 1 %>  <%= @raffle.price %></p>
 <% end %>
