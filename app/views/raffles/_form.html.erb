@@ -1,0 +1,17 @@
+
+<div class="form-wrapper">
+
+  <div class="form">
+    <%= simple_form_for(raffle) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :end_date %>
+    <%= f.input :numbers %>
+    <%= f.input :currency %>
+    <%= f.input :price %>
+    <%= f.input :header_photo, as: :file %>
+    <%= f.submit "Create Raffle", class: "btn primary-button"  %>
+    <% end %>
+  </div>
+
+</div>
