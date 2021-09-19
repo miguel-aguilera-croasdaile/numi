@@ -1,37 +1,46 @@
+<div class="container" id="raffle-hero">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <h1 id="hero-text"> <%= @raffle.name %> </h1>
+      <br>
+      <div class="hero-body">
+        <p>
+          <%= @raffle.description %>
+        </p>
+        <p>  <%= @raffle.end_date.strftime("Raffle Ends on %B %d, %Y") %> </p>
+      </div>
+    </div>
+    <div class="col-xs-hidden col-sm-hidden col-md-6 col-lg-6 col-xl-6">
+      <div class="placeholder-image">
+      </div>
+    </div>
+  </div>
+</div>
+<br>
 <div class="container">
-  <h1> <%= @raffle.name %> </h1>
-  <h1> <%= @raffle.description %> </h1>
+  <h1 id="hero-text"> Numbers </h1>
   <br>
-  <h1> Numbers </h1>
-  <div class="container">
-    <div class="row">
-      <% @numbers.each do |number| %>
-        <% user_has_order = Order.where(user_id:current_user.id, number_id:number.id) %>
+  <div class="row">
+    <% @numbers.each do |number| %>
+      <div class="col-4">
+        <% number_order = Order.where(user_id:current_user.id, number_id:number.id)[0] %>
         <div class="card">
-          <% if user_has_order.count != 0 %>
-            <% order = Order.where(user_id:current_user.id, number_id:number.id)[0] %>
-            <%= order.state %>
-
-            <p> <%= number.ticket_number %> </p>
-            <p> <%= @raffle.price_cents  %> </p>
-
-            <%= link_to order_path(order) do %>
-              <div class="btn btn-primary">
-                Complete Order
-              </div>
+          <p> <b> Number <%= number.ticket_number %> </b> </p>
+          <p> <%= @raffle.currency %> <%= @raffle.price_cents  %></p>
+          <% if number_order %>
+            <%= number_order.state %>
+            <%= link_to order_path(number_order), class: "primary-button" do %>
+              Complete Order
             <% end %>
-
           <% else %>
             <%= form_tag orders_path do %>
-              <p><%= number.ticket_number %>  </p>
-              <p> <%= @raffle.price_cents  %></p>
               <%= hidden_field_tag 'number_id', number.id %>
               <%= hidden_field_tag 'raffle_id', @raffle.id %>
-              <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+              <%= submit_tag 'Purchase', class: 'primary-button' %>
             <% end %>
           <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

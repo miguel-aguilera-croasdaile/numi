@@ -1,3 +1,55 @@
-<div class="banner">
-<%= link_to "View Raffles", raffles_path %>
+<div class="container" id="home-hero">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+      <h1 id="hero-text">
+        Create your own raffles.
+      </h1>
+      <br>
+      <div class="hero-body">
+        <p id="description-text">
+          With numi, you can create your own raffles for whatever purpose you see fit. Simply define how many raffle numbers are to be sold, and get started!
+        </p>
+        <br>
+        <%= link_to raffles_path, class: "no-underline-link" do %>
+          <button class="primary-button">Explore</button>
+        <% end %>
+        <%= link_to new_raffle_path, class: "no-underline-link" do %>
+          <button class="secondary-button">Get Started</button>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-hidden col-sm-hidden col-md-5 col-lg-5 col-xl-5">
+      <div class="placeholder-image">
+      </div>
+    </div>
+  </div>
 </div>
+<br>
+<div class="container">
+  <div style="width: 100%; text-align: center">
+    <h1 id="hero-text">How does it work?</h1>
+  </div>
+  <br>
+
+  <div class="row">
+
+    <div class="col-4">
+      <div class="placeholder-image">
+      1.
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="placeholder-image">
+      2.
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="placeholder-image">
+      3.
+      </div>
+    </div>
+  </div>
+</div>
+<br>

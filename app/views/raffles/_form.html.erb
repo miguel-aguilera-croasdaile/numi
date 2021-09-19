@@ -1,17 +1,23 @@
+<div class="container">
+  <div class="form-wrapper">
+    <div class="form">
+      <%= simple_form_for(raffle) do |f| %>
+        <%= f.label "What is your raffle for?" %>
+        <%= f.input :name, label: false %>
+        <%= f.label "Describe your raffle (optional)" %>
+        <%= f.input :description, label: false %>
+        <%= f.label "When will your raffle end?" %>
+        <%= f.input :end_date, label: false %>
+        <%= f.label "How many tickers do you want to sell?" %>
+        <%= f.input :number_amount, label: false %>
 
-<div class="form-wrapper">
-
-  <div class="form">
-    <%= simple_form_for(raffle) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :end_date %>
-    <%= f.input :number_amount %>
-    <%= f.input :currency %>
-    <%= f.input :price_cents %>
-    <%= f.input :header_photo, as: :file %>
-    <%= f.submit "Create Raffle", class: "btn primary-button"  %>
-    <% end %>
+        <%= f.label "Currency" %>
+        <%= f.input :currency, label: false %>
+        <%= f.label "Ticket Price" %>
+        <%= f.input :price_cents, label: false %>
+        <%= f.input :header_photo, as: :file, label: false %>
+        <%= f.submit "Create Raffle", class: "btn primary-button"  %>
+      <% end %>
+    </div>
   </div>
-
 </div>

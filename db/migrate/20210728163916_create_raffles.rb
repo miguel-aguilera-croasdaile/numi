@@ -5,6 +5,7 @@ class CreateRaffles < ActiveRecord::Migration[6.1]
       t.integer :number_amount
       t.text :description
       t.date :end_date
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

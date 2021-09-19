@@ -1,13 +1,27 @@
-.navbar-lewagon {
-  height: 8vh;
-  justify-content: space-between;
-  background: white;
+.navbar {
+  height: 10vh;
+  background-color: $off-white;
+  display: flex;
+  a {color: $off-black}
+  padding: 0 40px;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-brand{
+  font-size: 150%;
+  font-weight: bold;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-left, .navbar-right{
+  display: flex;
+}
+
+.nav-link{
+  margin: 0 10px;
+  border-radius: 25px;
+  transition: all 0.25s ease;
+  border: 3px solid rgba($color: #000000, $alpha: 0.0);
+}
+
+.nav-link:hover{
+  border: 3px solid $off-black;
 }

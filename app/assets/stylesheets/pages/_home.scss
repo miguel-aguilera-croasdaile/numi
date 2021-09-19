@@ -1,2 +1,19 @@
 // Specific CSS for your home-page
+#home-hero{
+  background-color: $off-white;
+  padding-top: 10vh;
+  padding-bottom: 7vh;
+  font-size: 150%;
+}
 
+#hero-text{
+  font-size: 200%;
+  font-weight: bolder;
+}
+#description-text{
+  color: gray
+}
+
+a.no-underline-link:hover{
+  text-decoration: none;
+}

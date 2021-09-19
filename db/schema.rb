@@ -70,10 +70,12 @@ ActiveRecord::Schema.define(version: 2021_08_18_151213) do
     t.integer "number_amount"
     t.text "description"
     t.date "end_date"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price_cents", default: 0, null: false
     t.string "currency"
+    t.index ["user_id"], name: "index_raffles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,4 +96,5 @@ ActiveRecord::Schema.define(version: 2021_08_18_151213) do
   add_foreign_key "orders", "numbers"
   add_foreign_key "orders", "raffles"
   add_foreign_key "orders", "users"
+  add_foreign_key "raffles", "users"
 end

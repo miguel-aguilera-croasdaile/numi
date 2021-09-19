@@ -1,4 +1,7 @@
 <% @orders.each do |o| %>
-<%= o %>
+<%= o.id %>
+<%= o.raffle.name %>
+<%= o.raffle.description %>
+<%= o.raffle.user %>
 <% end %>
 

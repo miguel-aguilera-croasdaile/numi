@@ -14,16 +14,34 @@
 
 .body{
   min-height: 100vh;
+  color: $off-black;
+  background-color: $off-white;
 }
 
-.card{
-  margin:10px;
-  padding:10px;
+.placeholder-image{
+  height: 100%;
+  border-radius: 10px;
+  background-color: white;
+  text-align: center;
+  text-justify: center;
 }
 
-.footer{
-  color: white;
-  padding: 20px;
-  min-height: 20vh;
-  background-color: rgba($color: #000000, $alpha: 0.75);
+.fainter{
+  color: gray !important;
+}
+
+a, a:hover{
+  text-decoration: none;
+}
+
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
 }

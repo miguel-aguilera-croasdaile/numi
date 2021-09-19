@@ -16,6 +16,7 @@ class RafflesController < ApplicationController
 
   def create
     @raffle = Raffle.create(raffle_params)
+    @raffle.user = current_user
     raffle_params[:number_amount].to_i.times do |i|
       n = Number.new(raffle: @raffle, ticket_number: (i+1))
       n.save!
