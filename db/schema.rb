@@ -43,26 +43,36 @@ ActiveRecord::Schema.define(version: 2021_08_18_151213) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "numbers", force: :cascade do |t|
+    t.integer "ticket_number"
+    t.bigint "raffle_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["raffle_id"], name: "index_numbers_on_raffle_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "state"
     t.integer "amount_cents", default: 0, null: false
     t.string "checkout_session_id"
     t.bigint "user_id", null: false
     t.bigint "raffle_id", null: false
+    t.bigint "number_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["number_id"], name: "index_orders_on_number_id"
     t.index ["raffle_id"], name: "index_orders_on_raffle_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "raffles", force: :cascade do |t|
     t.string "name"
+    t.integer "number_amount"
     t.text "description"
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "numbers"
-    t.float "price"
+    t.integer "price_cents", default: 0, null: false
     t.string "currency"
   end
 
@@ -80,6 +90,8 @@ ActiveRecord::Schema.define(version: 2021_08_18_151213) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "numbers", "raffles"
+  add_foreign_key "orders", "numbers"
   add_foreign_key "orders", "raffles"
   add_foreign_key "orders", "users"
 end

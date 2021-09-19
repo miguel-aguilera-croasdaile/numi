@@ -1,8 +1,37 @@
-<h1> <%= @raffle.name %> </h1>
-<h1> <%= @raffle.description %> </h1>
-<%#  cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+<div class="container">
+  <h1> <%= @raffle.name %> </h1>
+  <h1> <%= @raffle.description %> </h1>
+  <br>
+  <h1> Numbers </h1>
+  <div class="container">
+    <div class="row">
+      <% @numbers.each do |number| %>
+        <% user_has_order = Order.where(user_id:current_user.id, number_id:number.id) %>
+        <div class="card">
+          <% if user_has_order.count != 0 %>
+            <% order = Order.where(user_id:current_user.id, number_id:number.id)[0] %>
+            <%= order.state %>
 
-<% @raffle.numbers.times do |number| %>
-<%= link_to "Comprar Numero", new_order_path(raffle_id: @raffle.id, raffle_number: number+1) %>
-<p><%= number + 1 %>  <%= @raffle.price %></p>
-<% end %>
+            <p> <%= number.ticket_number %> </p>
+            <p> <%= @raffle.price_cents  %> </p>
+
+            <%= link_to order_path(order) do %>
+              <div class="btn btn-primary">
+                Complete Order
+              </div>
+            <% end %>
+
+          <% else %>
+            <%= form_tag orders_path do %>
+              <p><%= number.ticket_number %>  </p>
+              <p> <%= @raffle.price_cents  %></p>
+              <%= hidden_field_tag 'number_id', number.id %>
+              <%= hidden_field_tag 'raffle_id', @raffle.id %>
+              <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
